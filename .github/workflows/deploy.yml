@@ -14,7 +14,7 @@ jobs:
 
       - name: Build project
         env:
-          NODE_OPTIONS: "--max_old_space_size=8192"
+          NODE_OPTIONS: "--max_old_space_size=16000"
         run: |
           # Example build commands for a Node.js project
           npm install
