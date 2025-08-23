@@ -6,7 +6,7 @@ import ProfileAvatar from "components/dashboard/account/inputs/ProfileAvatar";
 import { useState } from "react"
 import notify from "utils/notify";
 import { t } from "commons/languages/helper";
-1
+
 const ProfileForm = (props: any) => {
   const form = defaultForm(useForm);
   const [ uploadedFiles, setUploadedFiles ] = useState<any[]>([]);
