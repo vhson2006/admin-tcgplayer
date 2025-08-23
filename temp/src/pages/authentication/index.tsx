@@ -12,6 +12,7 @@ import notify from 'utils/notify';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from 'components/authentication/slice';
 import { encryptPermission } from 'utils/account';
+
 import { jsonParse } from "utils/json";
 
 export const LoginPage = () => {
