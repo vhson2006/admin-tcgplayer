@@ -51,12 +51,12 @@ jobs:
           script: |
             cd admin-tcgplayer
             git pull origin master
-            tar -xvzf dist.gz
-            tar -xvzf node_modules.gz
+            # tar -xvzf dist.gz
+            # tar -xvzf node_modules.gz
             tar -xvzf html_build.gz ./html
             tar -xvzf html_node_modules.gz ./html
             pm2 restart admin-tcgplayer
-            rm dist.gz
-            rm node_modules.gz
-            rm html_build.gz
-            rm html_node_modules.gz
+            # rm dist.gz
+            # rm node_modules.gz
+            # rm html_build.gz
+            # rm html_node_modules.gz
