@@ -15,12 +15,9 @@ jobs:
       - name: Build project
         run: |
           # Example build commands for a Node.js project
-          ls
-          cd html
-          ls
+          cd temp
           npm install
           npm run build
-          ls
           tar -cvzf html_build.gz build
           tar -cvzf html_node_modules.gz node_modules
           cd ..

@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
 import rootReducer from './reducer';
 import rootSaga from './saga';
-import monitorReducerEnhancer from '../store/enhancer';
+import monitorReducerEnhancer from './enhancer';
 
 const initialStore = () => {
   const sagaMiddleware = createSagaMiddleware();

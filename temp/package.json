@@ -230,6 +230,7 @@
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
     "@types/crypto-js": "^4.2.2",
+    "@types/domhandler": "^2.4.5",
     "@types/parse-link-header": "^2.0.3",
     "@types/react-helmet": "^6.1.11",
     "@types/react-infinite-scroller": "^1.2.5",
