@@ -67,3 +67,4 @@ jobs:
             rm dist.gz
             rm node_modules.gz
             pm2 restart admin-tcgplayer
+#pm2 start dist/main.js -n admin-tcgplayer
