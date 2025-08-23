@@ -1,0 +1,57 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build project
+        run: |
+          # Example build commands for a Node.js project
+          cd html
+          npm install
+          npm run build
+          cd ..
+          npm install
+          npm run build
+          tar -cvzf dist.gz dist
+          tar -cvzf node_modules.gz node_modules
+          tar -cvzf html_build.gz html/build
+          tar -cvzf html_node_modules.gz html/node_modules
+
+      - name: Deploy to Ubuntu server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          source: "./dist.gz,./node_modules.gz,./html_build.gz,./html_node_modules.gz"
+          target: "/home/ubuntu/admin-tcgplayer" 
+
+      - name: Deploy and Build
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+            cd admin-tcgplayer
+            git pull origin master
+            tar -xvzf dist.gz
+            tar -xvzf node_modules.gz
+            tar -xvzf html_build.gz ./html
+            tar -xvzf html_node_modules.gz ./html
+            pm2 restart admin-tcgplayer
+            rm dist.gz
+            rm node_modules.gz
+            rm html_build.gz
+            rm html_node_modules.gz
