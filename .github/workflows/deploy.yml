@@ -25,10 +25,6 @@ jobs:
           DISABLE_ESLINT_PLUGIN: true
         run: |
           # Example build commands for a Node.js project
-          npm install
-          npm run build
-          tar -cvzf dist.gz dist
-          tar -cvzf node_modules.gz node_modules
           cd temp
           npm install
           npm run build
