@@ -23,8 +23,8 @@ jobs:
           npm run build
           tar -cvzf dist.gz dist
           tar -cvzf node_modules.gz node_modules
-          tar -cvzf html_build.gz html/build
-          tar -cvzf html_node_modules.gz html/node_modules
+          tar -cvzf html_build.gz ./html/build
+          tar -cvzf html_node_modules.gz ./html/node_modules
 
       - name: Deploy to Ubuntu server
         uses: appleboy/scp-action@v0.1.7
