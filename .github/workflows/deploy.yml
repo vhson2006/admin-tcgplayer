@@ -18,6 +18,11 @@ jobs:
       - name: Build project
         env:
           NODE_OPTIONS: "--max_old_space_size=16000"
+          PORT: 3001
+          REACT_APP_API: https://api.shanovina.com
+          REACT_APP_WEB: https://admin.shanovina.com
+          ESLINT_NO_DEV_ERRORS: true
+          DISABLE_ESLINT_PLUGIN: true
         run: |
           # Example build commands for a Node.js project
           npm install
