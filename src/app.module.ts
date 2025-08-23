@@ -6,7 +6,7 @@ import {  Module } from '@nestjs/common';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'html', 'build'),
+      rootPath: join(__dirname, '..', 'temp', 'build'),
       renderPath: '*',
         serveRoot: '',
         exclude: [],
