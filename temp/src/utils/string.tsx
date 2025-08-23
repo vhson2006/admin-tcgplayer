@@ -5,7 +5,7 @@ const defined = [
 const MAX_LENGTH_SUPPORT = 6;
 export const stringToPoint = (str: string): number => {
   try {
-    str = str.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'_');
+    str = str.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g,'_');//eslint-disable-line
     str = str.toLowerCase();
     
     let result = 0;
@@ -21,7 +21,7 @@ export const stringToPoint = (str: string): number => {
 
 export const removeSpecialChar = (str: string): string => {
   try {
-    return str.replace(/[^a-zA-Z ]/g, "")
+    return str.replace(/[^a-zA-Z ]/g, "")//eslint-disable-line
   } catch (e) {
     return ''
   }

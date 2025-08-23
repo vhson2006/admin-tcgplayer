@@ -14,19 +14,18 @@ jobs:
 
       - name: Build project
         env:
-          NODE_OPTIONS: "--max_old_space_size=8000"
+          NODE_OPTIONS: "--max_old_space_size=8192"
         run: |
           # Example build commands for a Node.js project
-          cd temp
-          npm install
-          npm run build
-          tar -cvzf html_build.gz build
-          tar -cvzf html_node_modules.gz node_modules
-          cd ..
           npm install
           npm run build
           tar -cvzf dist.gz dist
           tar -cvzf node_modules.gz node_modules
+          cd temp
+          npm install
+          npm run build
+          tar -cvzf html_build.gz build
+          tar -cvzf html_node_modules.gz node_modules          
 
       - name: Deploy to Ubuntu server
         uses: appleboy/scp-action@v0.1.7
