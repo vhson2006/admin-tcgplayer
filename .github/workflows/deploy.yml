@@ -28,20 +28,20 @@ jobs:
           cd temp
           npm install
           npm run build
-          tar -cvzf html_build.gz build
-          tar -cvzf html_node_modules.gz node_modules          
+          tar -cvzf temp_build.gz build
+          tar -cvzf temp_node_modules.gz node_modules          
 
-      - name: Deploy to Ubuntu server
+      - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "./html/html_build.gz,./html/html_node_modules.gz"
+          source: "./temp/temp_build.gz,./temp/temp_node_modules.gz"
           target: "/home/ubuntu/admin-tcgplayer" 
 
-      - name: Deploy and Build
+      - name: Excute and Deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -53,10 +53,10 @@ jobs:
             git pull origin master
             # tar -xvzf dist.gz
             # tar -xvzf node_modules.gz
-            tar -xvzf html_build.gz ./html
-            tar -xvzf html_node_modules.gz ./html
+            tar -xvzf temp_build.gz ./temp
+            tar -xvzf temp_node_modules.gz ./temp
             pm2 restart admin-tcgplayer
             # rm dist.gz
             # rm node_modules.gz
-            # rm html_build.gz
-            # rm html_node_modules.gz
+            # rm temp_build.gz
+            # rm temp_node_modules.gz
