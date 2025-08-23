@@ -18,13 +18,13 @@ jobs:
           cd html
           npm install
           npm run build
+          tar -cvzf html_build.gz build
+          tar -cvzf html_node_modules.gz node_modules
           cd ..
           npm install
           npm run build
           tar -cvzf dist.gz dist
           tar -cvzf node_modules.gz node_modules
-          tar -cvzf html_build.gz ./html/build
-          tar -cvzf html_node_modules.gz ./html/node_modules
 
       - name: Deploy to Ubuntu server
         uses: appleboy/scp-action@v0.1.7
@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "./dist.gz,./node_modules.gz,./html_build.gz,./html_node_modules.gz"
+          source: "./dist.gz,./node_modules.gz,./html/html_build.gz,./html/html_node_modules.gz"
           target: "/home/ubuntu/admin-tcgplayer" 
 
       - name: Deploy and Build
